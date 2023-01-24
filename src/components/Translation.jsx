@@ -13,6 +13,11 @@ import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
 
 
 const ExpandMore = styled((props) => {
@@ -27,9 +32,10 @@ const ExpandMore = styled((props) => {
 }));
 
 
-export default function Translation({ doStuff, setInput, result,loading }) {
+export default function Translation({ doStuff, setInput, result,loading ,save}) {
 
   const [expanded, setExpanded] = React.useState(false);
+  console.log(result)
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -61,9 +67,9 @@ const lightTheme = createTheme({ palette: { mode: 'light' } });
       
        <Button variant="contained" onClick={doStuff} sx={{marginLeft:"20px",marginTop:"20px"}}>send</Button >
       <CardContent>
-      <item sx={{height:300,}}>
-            {loading?<CircularProgress />:result.length > 0 ? result : ""} 
-             </item>
+      <Item sx={{height:300,}}>
+            {loading?<CircularProgress />:result.length > 0 ? result.response : ""} 
+             </Item>
       </CardContent>
       <CardActions disableSpacing>
 
@@ -75,6 +81,13 @@ const lightTheme = createTheme({ palette: { mode: 'light' } });
    
         </CardContent>
       </Collapse>
+      {result.length>1?result.map((items)=>{
+        return (<><TextField value={items.query} id="outlined-basic" disabled fullWidth/> 
+        <TextField value={items.response} id="outlined-basic" disabled fullWidth/></>)
+      }):<><List>
+        <ListItem>
+          <ListItemText primary={result.query} secondary={result.response}/>
+          </ListItem></List></>}
     </Card>
     </Box>
 

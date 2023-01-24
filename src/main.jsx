@@ -4,31 +4,52 @@ import OptionSelection from "./components/OptionSelection";
 import Translation from "./components/Translation";
 import { arrayItems } from "./AIOptions";
 import { useState } from "react";
+import axios from"axios"
 
 function Mains() {
   const [loading,setLoading] = useState(false)
   const configuration = new Configuration({
-    apiKey: "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",
+    apiKey: "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",
   });
   const openai = new OpenAIApi(configuration);
   const [option, setOption] = useState({});
-  const [result, setResult] = useState("");
+  const [result, setResult] = useState([]);
   const [input, setInput] = useState("");
   // console.log(import.meta.env.VITE_Open_AI_Key);
   const selectOption = (option) => {
     setOption(option);
   };
+  const [save,setSave] = useState([])
+ 
 
   const doStuff = async () => {
+    setSave((prev)=>[
+      ...prev,
+      input
+    ])
+ 
     setLoading(true)
     console.log("its working")
-    let object = { ...option, prompt: input,model: "text-davinci-003" };
+    let object = { ...option, prompt: input };
+   await axios.post('http://localhost:5000/api/generate-text', {
+      prompt:input,
+      model:option.model
+      
+    })
+    .then(function (response) {
+      console.log(response.data.conversation)
+      setResult(response.data.conversation);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 
-    const response = await openai.createCompletion(object);
-    console.log(response)
-
-    setResult(response.data.choices[0].text);
+  
     setLoading(false)
+    // setSave((prev)=>[
+    //   ...prev,
+    //   result
+    // ])
   };
 
   return (
