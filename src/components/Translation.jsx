@@ -30,7 +30,6 @@ const ExpandMore = styled((props) => {
 export default function Translation({ doStuff, setInput, result,loading ,save,setBack}) {
 
   const [expanded, setExpanded] = React.useState(false);
-  console.log(result)
 
   const handleExpandClick = () => {
     setExpanded(!expanded);

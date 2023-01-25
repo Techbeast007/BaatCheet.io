@@ -16,7 +16,6 @@ function Mains() {
   useEffect(()=>{
      axios.get('https://backendbaatcheet.onrender.com/api/getConvo')
     .then(function (response) {
-      console.log(response.data.conversation)
       setSave(response.data.conversation);
     })
     .catch(function (error) {
