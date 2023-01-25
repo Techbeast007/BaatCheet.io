@@ -103,7 +103,7 @@ const lightTheme = createTheme({ palette: { mode: 'light' } });
         return (<>
           <ListItem key={items.query}><ListItemText primary={items.query} secondary={items.response} id="outlined-basic"  fullwidth="true" className="card"/></ListItem></>)
       }):<>
-        <ListItem key={items.query}>
+        <ListItem key={result.query}>
           <ListItemText primary={result.query} secondary={result.response}/>
           </ListItem></>}</List></Box>
          
