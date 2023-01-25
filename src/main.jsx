@@ -58,7 +58,6 @@ function Mains() {
 
   
     setLoading(false)
-    setInput("")
     // setSave((prev)=>[
     //   ...prev,
     //   result

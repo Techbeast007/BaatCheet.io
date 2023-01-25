@@ -2,12 +2,8 @@ import React from "react";
 import Paper from '@mui/material/Paper';
 import { createTheme} from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-// import Loading from "../assets/loading";
-import CircularProgress from '@mui/material/CircularProgress';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
@@ -16,11 +12,7 @@ import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import { ListItemText, Typography } from "@mui/material";
-import { FixedSizeList } from 'react-window';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import Divider from '@mui/material/Divider';
 import "../../src/button.css";
-import { useState } from "react";
 import Chip from '@mui/material/Chip';
 import Skeleton from '@mui/material/Skeleton';
 
@@ -54,9 +46,6 @@ const Item = styled(Paper)(({ theme }) => ({
   // lineHeight: '10px',
   fontFamily: 'Montserrat'
 }));
-
-const darkTheme = createTheme({ palette: { mode: 'dark' } });
-const lightTheme = createTheme({ palette: { mode: 'light' } });
 
   return (
     <>
