@@ -9,7 +9,7 @@ import { useEffect } from "react";
 const { Configuration, OpenAIApi } = require("openai");
 
 const configuration = new Configuration({
-  apiKey:"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",
+  apiKey:process.env.REACT_APP_KEY_API,
 });
 const openai = new OpenAIApi(configuration);
 
