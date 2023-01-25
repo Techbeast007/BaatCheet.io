@@ -6,6 +6,13 @@ import { useState } from "react";
 import axios from"axios"
 import { useEffect } from "react";
 
+const { Configuration, OpenAIApi } = require("openai");
+
+const configuration = new Configuration({
+  apiKey:"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",
+});
+const openai = new OpenAIApi(configuration);
+
 function Mains() {
   const [loading,setLoading] = useState(false)
   const [option, setOption] = useState({});
@@ -30,12 +37,19 @@ function Mains() {
  
 
   const doStuff = async () => {
+    
  
     setLoading(true)
-    console.log("its working")
-   await axios.post('https://backendbaatcheet.onrender.com/api/generate-text', {
+    console.log(option)
+    const completion = await openai.createCompletion({
+      model: option.model,
+      prompt: input,
+      ...option
+    });
+    const response = completion.data.choices[0].text
+   await axios.post('http://localhost:5000/api/generate-text', {
       prompt:input,
-      model:option.model
+      response :response
       
     })
     .then(function (response) {
