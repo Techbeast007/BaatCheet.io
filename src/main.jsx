@@ -1,5 +1,4 @@
 import "./App.css";
-import { Configuration, OpenAIApi } from "openai";
 import OptionSelection from "./components/OptionSelection";
 import Translation from "./components/Translation";
 import { arrayItems } from "./AIOptions";
@@ -9,27 +8,22 @@ import { useEffect } from "react";
 
 function Mains() {
   const [loading,setLoading] = useState(false)
-  const configuration = new Configuration({
-    apiKey: "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",
-  });
-  const openai = new OpenAIApi(configuration);
   const [option, setOption] = useState({});
   const [result, setResult] = useState([]);
   const [input, setInput] = useState("");
   const [back,setBack] = useState(false)
-  // console.log(import.meta.env.VITE_Open_AI_Key);
 
   useEffect(()=>{
      axios.get('https://backendbaatcheet.onrender.com/api/getConvo')
     .then(function (response) {
       console.log(response.data.conversation)
       setSave(response.data.conversation);
-    },[result])
+    })
     .catch(function (error) {
       console.log(error);
     });
 
-  },[])
+  },[result])
   const selectOption = (option) => {
     setOption(option);
   };
@@ -40,7 +34,6 @@ function Mains() {
  
     setLoading(true)
     console.log("its working")
-    let object = { ...option, prompt: input };
    await axios.post('https://backendbaatcheet.onrender.com/api/generate-text', {
       prompt:input,
       model:option.model

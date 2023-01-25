@@ -1,6 +1,4 @@
 import React from "react";
-import Paper from '@mui/material/Paper';
-import { createTheme} from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
@@ -38,14 +36,7 @@ export default function Translation({ doStuff, setInput, result,loading ,save,se
     setExpanded(!expanded);
   };
   
-const Item = styled(Paper)(({ theme }) => ({
-  ...theme.typography.body2,
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-  height: 60,
-  // lineHeight: '10px',
-  fontFamily: 'Montserrat'
-}));
+
 
   return (
     <>
