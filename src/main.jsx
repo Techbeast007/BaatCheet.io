@@ -47,7 +47,7 @@ function Mains() {
       ...option
     });
     const response = completion.data.choices[0].text
-   await axios.post('http://localhost:5000/api/generate-text', {
+   await axios.post('https://backendbaatcheet.onrender.com/api/generate-text', {
       prompt:input,
       response :response
       
