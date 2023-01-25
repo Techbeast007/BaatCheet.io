@@ -33,7 +33,7 @@ function Mains() {
  
     setLoading(true)
     console.log("its working")
-   await axios.post('https://backendbaatcheet.onrender.com/api/generate-text', {
+   await axios.post('http://localhost:5000/api/generate-text', {
       prompt:input,
       model:option.model
       

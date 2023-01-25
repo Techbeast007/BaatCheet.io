@@ -5,8 +5,8 @@ export const arrayItems = [
     description: "Answer questions based on existing knowledge",
     option: {
       model: "text-davinci-002",
-      temperature: 0,
-      max_tokens: 100,
+      temperature: 1,
+      max_tokens: 300,
       top_p: 1,
       frequency_penalty: 0.0,
       presence_penalty: 0.0,

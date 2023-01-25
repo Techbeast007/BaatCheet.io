@@ -1,9 +1,12 @@
 import React from "react";
+import "../../src/button.css";
+import { Typography } from "@mui/material";
 
 export default function OptionSelection({ arrayItems, selectOption,setBack }) {
   return (
     <>
-      <h1 className="heading">React AI APP</h1>
+      <h1 className="buttons"  >BaatCheet.io</h1>
+      <Typography variant="h5" >THIS APP IS FOR PEOPLE WHO WANT TO CREATE THEIR OWN DESTINY.</Typography>
 
       <div className="grid-main">
         {arrayItems.map((item) => {
