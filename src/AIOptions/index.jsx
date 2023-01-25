@@ -4,7 +4,7 @@ export const arrayItems = [
     id: "q&a",
     description: "Answer questions based on existing knowledge",
     option: {
-      model: "text-davinci-002",
+      model: "text-davinci-003",
       temperature: 1,
       max_tokens: 300,
       top_p: 1,
