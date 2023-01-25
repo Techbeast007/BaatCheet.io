@@ -15,9 +15,14 @@ import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
+import { ListItemText, Typography } from "@mui/material";
+import { FixedSizeList } from 'react-window';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Divider from '@mui/material/Divider';
+import "../../src/button.css";
+import { useState } from "react";
+import Chip from '@mui/material/Chip';
+import Skeleton from '@mui/material/Skeleton';
 
 
 const ExpandMore = styled((props) => {
@@ -32,7 +37,7 @@ const ExpandMore = styled((props) => {
 }));
 
 
-export default function Translation({ doStuff, setInput, result,loading ,save}) {
+export default function Translation({ doStuff, setInput, result,loading ,save,setBack}) {
 
   const [expanded, setExpanded] = React.useState(false);
   console.log(result)
@@ -55,40 +60,58 @@ const lightTheme = createTheme({ palette: { mode: 'light' } });
 
   return (
     <>
+    <Typography variant="span" sx={{display:"flex",justifyContent:"center"}} className="buttons" onClick={()=>setBack(true)}>BaatCheet.IO</Typography>
 
-<Box sx={{display:"flex",justifyContent:"center",padding:"10px"}}>
-<Card sx={{ minWidth:"90vw" }}>
-      <CardHeader
+<Box sx={{display:"flex",justifyContent:"center",padding:"10px"}} fullWidth>
 
-        title="BaatCheet.IO"
-       
-      />
-       <TextField id="outlined-basic" label="Outlined" variant="outlined"  onChange={(e) => setInput(e.target.value)} fullWidth/>
-      
-       <Button variant="contained" onClick={doStuff} sx={{marginLeft:"20px",marginTop:"20px"}}>send</Button >
+
+<Card sx={{ minWidth:"90vw",padding:"30px",borderRadius:"8px" }} fullWidth>
+       <TextField id="outlined-basic" label="Chat Like Pro" variant="outlined" onChange={(e) => setInput(e.target.value)} fullWidth sx={{display:"flex",borderColor:"green"}}/>
+       <button class="button" onClick={doStuff} >Send</button>
+       {/* <Button variant="contained" onClick={doStuff} sx={{marginLeft:"20px",marginTop:"20px"}}>send</Button > */}
+      {loading? <> <Skeleton />
+      <Skeleton animation="wave" />
+      <Skeleton animation={false} /></> :<>{result.length>1?result.map((items)=>{
+        return (<><List key={items.query}>
+         <ListItem key={items.query}><ListItemText primary={items.query} secondary={items.response} id="outlined-basic"  fullwidth="true"/></ListItem></List></>)
+      }):<><List className="card">
+        <ListItem>
+          <ListItemText primary={result.query} secondary={result.response}/>
+          </ListItem ></List></>}</>}
+ 
       <CardContent>
-      <Item sx={{height:300,}}>
-            {loading?<CircularProgress />:result.length > 0 ? result.response : ""} 
-             </Item>
+    
+        
       </CardContent>
-      <CardActions disableSpacing>
+      <CardActions disableSpacing sx={{display:"flex",justifyContent:"center"}}>
+        {/* <Typography variant="h4" sx={{display:"flex",justifyContent:"center"}}>EXPAND FOR HISTORY</Typography> */}
+      <ExpandMore
+          expand={expanded}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="show more"
+        > <Chip label="HISTORY" className="button"/>
+        </ExpandMore>
+      
 
 
       </CardActions>
+
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-                    
-   
+        <Box sx={{overflowY:"scroll",height:"40vh",scrollbarWidth:"thin"}} fullWidth><List sx={{borderWidth:"10px",borderColor:"black"}}>{save.length>1?save.map((items)=>{
+        return (<>
+          <ListItem key={items.query}><ListItemText primary={items.query} secondary={items.response} id="outlined-basic"  fullwidth="true" className="card"/></ListItem></>)
+      }):<>
+        <ListItem key={items.query}>
+          <ListItemText primary={result.query} secondary={result.response}/>
+          </ListItem></>}</List></Box>
+         
         </CardContent>
       </Collapse>
-      {result.length>1?result.map((items)=>{
-        return (<><TextField value={items.query} id="outlined-basic" disabled fullWidth/> 
-        <TextField value={items.response} id="outlined-basic" disabled fullWidth/></>)
-      }):<><List>
-        <ListItem>
-          <ListItemText primary={result.query} secondary={result.response}/>
-          </ListItem></List></>}
+
     </Card>
+
     </Box>
 
     
