@@ -9,7 +9,7 @@ import { useEffect } from "react";
 const { Configuration, OpenAIApi } = require("openai");
 
 const configuration = new Configuration({
-  apiKey:"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",
+  apiKey:process.env.KEY,
 });
 const openai = new OpenAIApi(configuration);
 
@@ -42,7 +42,6 @@ function Mains() {
     setLoading(true)
     console.log(option)
     const completion = await openai.createCompletion({
-      model: option.model,
       prompt: input,
       ...option
     });
