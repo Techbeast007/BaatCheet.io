@@ -9,8 +9,9 @@ import { useEffect } from "react";
 const { Configuration, OpenAIApi } = require("openai");
 
 const configuration = new Configuration({
-  apiKey:process.env.REACT_APP_KEY_API,
+  apiKey:process.env.REACT_APP_API_KEY,
 });
+console.log(process.env.REACT_APP_API_KEY)
 const openai = new OpenAIApi(configuration);
 
 function Mains() {
