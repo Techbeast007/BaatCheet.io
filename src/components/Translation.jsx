@@ -81,10 +81,10 @@ export default function Translation({ doStuff, setInput, result,loading ,save,se
         <CardContent>
         <Box sx={{overflowY:"scroll",height:"40vh",scrollbarWidth:"thin"}} fullWidth><List sx={{borderWidth:"10px",borderColor:"black"}}>{save.length>1?save.map((items)=>{
         return (<>
-          <ListItem key={items.query}><ListItemText primary={items.query} secondary={ucFirstAllWords(items.response)} id="outlined-basic"  fullwidth="true" className="card"/></ListItem></>)
+          <ListItem key={items.query}><ListItemText primary={items.query} secondary={items.response.toLowerCase()} id="outlined-basic"  fullwidth="true" className="card"/></ListItem></>)
       }):<>
         <ListItem key={result.query}>
-          <ListItemText primary={result.query} secondary={ucFirstAllWords(result.response)}/>
+          <ListItemText primary={result.query} secondary={result.response.toLowerCase()}/>
           </ListItem></>}</List></Box>
          
         </CardContent>
