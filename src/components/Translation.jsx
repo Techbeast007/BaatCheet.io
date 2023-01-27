@@ -34,16 +34,7 @@ export default function Translation({ doStuff, setInput, result,loading ,save,se
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-  function ucFirstAllWords( str )
-  {
-      var pieces = str?.split(" ");
-      for ( var i = 0; i < pieces?.length; i++ )
-      {
-          var j = pieces[i].charAt(0).toUpperCase();
-          pieces[i] = j + pieces[i].substr(1);
-      }
-      return pieces.join(" ");
-  }
+
   
 
 
@@ -62,7 +53,7 @@ export default function Translation({ doStuff, setInput, result,loading ,save,se
       <Skeleton animation="wave" />
       <Skeleton animation={false} /></> :<>{result.length>1?result.map((items)=>{
         return (<><List key={items.query}>
-         <ListItem key={items.query}><ListItemText primary={items.query} secondary={items.response} id="outlined-basic"  fullwidth="true"/></ListItem></List></>)
+         <ListItem key={items.query}><ListItemText primary={items.query} secondary={items.response?.toLowerCase()} id="outlined-basic"  fullwidth="true"/></ListItem></List></>)
       }):<><List className="card">
         <ListItem>
           <ListItemText primary={result.query} secondary={result.response}/>
